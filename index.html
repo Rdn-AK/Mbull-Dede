@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sena & Dedek — Rumah Tempat Kita Pulang 💕</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        rose: {
+                            50: '#fff0f5',
+                            100: '#ffe4e1',
+                            200: '#fecdd3',
+                            400: '#fb7185',
+                            500: '#f43f5e',
+                            600: '#e11d48',
+                            700: '#be123c',
+                            800: '#9f1239',
+                            900: '#881337',
+                        },
+                        botanical: '#81b29a',
+                        warmgold: '#ffb703',
+                    },
+                    fontFamily: {
+                        heading: ['Playfair Display', 'serif'],
+                        body: ['Plus Jakarta Sans', 'sans-serif'],
+                        cursive: ['Sacramento', 'cursive'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Sacramento&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Custom Animations & Glow Styles */
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(135deg, #fff0f5 0%, #fff6f8 50%, #ffe4e1 100%);
+            color: #4a2e35;
+            overflow-x: hidden;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 10px 30px rgba(225, 29, 72, 0.08);
+        }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 192, 203, 0.3);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #be123c 0%, #e11d48 50%, #f43f5e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .text-cursive {
+            font-family: 'Sacramento', cursive;
+        }
+
+        .pulse-heart {
+            animation: heartBeat 1.5s infinite ease-in-out;
+        }
+
+        @keyframes heartBeat {
+            0% { transform: scale(1); }
+            14% { transform: scale(1.15); }
+            28% { transform: scale(1); }
+            42% { transform: scale(1.15); }
+            70% { transform: scale(1); }
+        }
+
+        .float-slow {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(3deg); }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fff0f5;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #f43f5e;
+            border-radius: 999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #be123c;
+        }
+
+        /* Sticky note visual style */
+        .sticky-note {
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .sticky-note:hover {
+            transform: translateY(-6px) rotate(1deg) scale(1.02);
+            box-shadow: 0 14px 28px rgba(225, 29, 72, 0.15);
+        }
+    </style>
+</head>
+<body class="relative min-h-screen">
+
+    <!-- Interactive Falling Petals & Hearts Canvas Background -->
+    <canvas id="romanceCanvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
+
+    <!-- Navigation Bar -->
+    <nav class="glass-nav fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-3 px-4 md:px-8">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <a href="#hero" class="flex items-center gap-2 group">
+                <span class="w-10 h-10 rounded-full bg-rose-500 text-white flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
+                    <i class="fa-solid font-bold fa-heart text-lg pulse-heart"></i>
+                </span>
+                <div>
+                    <span class="font-heading font-bold text-lg md:text-xl text-rose-800 tracking-tight block">Mbull & Dedek</span>
+                    <span class="text-[10px] text-rose-500 font-medium tracking-widest uppercase block -mt-1">Love Sanctuary</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <div class="hidden md:flex items-center gap-6 font-medium text-sm text-rose-900/80">
+                <a href="#about" class="hover:text-rose-600 transition-colors">Kisah Kami</a>
+                <a href="#biography" class="hover:text-rose-600 transition-colors">Biografi</a>
+                <a href="#dynamics" class="hover:text-rose-600 transition-colors">Dinamika Sikap</a>
+                <a href="#timeline" class="hover:text-rose-600 transition-colors">Timeline</a>
+                <a href="#ecosystem" class="hover:text-rose-600 transition-colors">Web Apps</a>
+                <a href="#notes" class="hover:text-rose-600 transition-colors">Pesan Cinta</a>
+            </div>
+
+            <!-- Header Controls & Actions -->
+            <div class="flex items-center gap-2">
+                <button id="ambientSoundBtn" title="Atmosfer Suara Romantis" class="p-2.5 rounded-full bg-rose-100 text-rose-700 hover:bg-rose-200 transition-all flex items-center gap-1.5 text-xs font-semibold">
+                    <i class="fa-solid fa-music"></i>
+                    <span class="hidden sm:inline">Lagu Cinta</span>
+                </button>
+                <button id="petalShowerBtn" title="Hujan Bunga Mawar" class="p-2.5 rounded-full bg-rose-500 text-white hover:bg-rose-600 transition-all shadow-sm flex items-center gap-1 text-xs font-semibold">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    <span class="hidden sm:inline">Hujan Mawar</span>
+                </button>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="md:hidden p-2 text-rose-800 text-xl focus:outline-none">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Nav Menu -->
+        <div id="mobileMenu" class="hidden md:hidden pt-4 pb-2 px-2 flex flex-col gap-3 text-center text-sm font-medium border-t border-rose-100 mt-3">
+            <a href="#about" class="py-2 hover:bg-rose-50 rounded-lg text-rose-800">Kisah Kami</a>
+            <a href="#biography" class="py-2 hover:bg-rose-50 rounded-lg text-rose-800">Biografi</a>
+            <a href="#dynamics" class="py-2 hover:bg-rose-50 rounded-lg text-rose-800">Dinamika Sikap</a>
+            <a href="#timeline" class="py-2 hover:bg-rose-50 rounded-lg text-rose-800">Timeline</a>
+            <a href="#ecosystem" class="py-2 hover:bg-rose-50 rounded-lg text-rose-800">Web Apps Terlampir</a>
+            <a href="#notes" class="py-2 hover:bg-rose-50 rounded-lg text-rose-800">Pesan Cinta</a>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT WRAPPER -->
+    <main class="relative z-10 pt-24 space-y-24 pb-20">
+
+        <!-- 1. HERO SECTION -->
+        <section id="hero" class="min-h-[85vh] flex items-center justify-center px-4 relative">
+            <div class="max-w-4xl mx-auto text-center space-y-8">
+                
+                <!-- Badge -->
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-rose-100/80 border border-rose-200 text-rose-700 text-xs md:text-sm font-semibold shadow-sm float-slow">
+                    <i class="fa-solid fa-house-chimney-heart text-rose-500"></i>
+                    <span>Rumah Tempat Kita Pulang & Saling Menjaga</span>
+                    <i class="fa-solid fa-sparkles text-warmgold"></i>
+                </div>
+
+                <!-- Main Title -->
+                <div class="space-y-3">
+                    <h1 class="font-heading text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight text-rose-950">
+                        Mbull <span class="text-cursive text-5xl sm:text-6xl md:text-8xl text-rose-600 font-normal">&</span> Dedek
+                    </h1>
+                    <p class="text-sm md:text-lg text-rose-800 font-medium max-w-2xl mx-auto italic">
+                        "Dari <span class="underline decoration-rose-400 decoration-2 font-semibold">'Kakak'</span> & <span class="underline decoration-rose-400 decoration-2 font-semibold">'Tia'</span> menjadi <span class="font-bold text-rose-600">'Mbull'</span> & <span class="font-bold text-rose-600">'Dedek'</span>"
+                    </p>
+                </div>
+
+                <!-- Live Days Together Counter Card -->
+                <div class="glass-card rounded-3xl p-6 sm:p-8 border border-rose-200/80 shadow-xl relative overflow-hidden">
+                    <div class="absolute -top-10 -right-10 w-32 h-32 bg-rose-200/50 rounded-full blur-2xl pointer-events-none"></div>
+                    <div class="absolute -bottom-10 -left-10 w-32 h-32 bg-rose-300/40 rounded-full blur-2xl pointer-events-none"></div>
+
+                    <p class="text-xs sm:text-sm font-bold uppercase tracking-wider text-rose-600 mb-4 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                        Waktu Bersama Sejak 7 Agustus 2026
+                    </p>
+
+                    <!-- Counter Grid -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 text-center">
+                        <div class="bg-white/80 p-3 sm:p-4 rounded-2xl border border-rose-100 shadow-sm">
+                            <span id="counterDays" class="font-heading text-3xl sm:text-4xl font-bold text-rose-700 block">0</span>
+                            <span class="text-xs font-medium text-rose-500 uppercase tracking-wider">Hari</span>
+                        </div>
+                        <div class="bg-white/80 p-3 sm:p-4 rounded-2xl border border-rose-100 shadow-sm">
+                            <span id="counterHours" class="font-heading text-3xl sm:text-4xl font-bold text-rose-700 block">0</span>
+                            <span class="text-xs font-medium text-rose-500 uppercase tracking-wider">Jam</span>
+                        </div>
+                        <div class="bg-white/80 p-3 sm:p-4 rounded-2xl border border-rose-100 shadow-sm">
+                            <span id="counterMinutes" class="font-heading text-3xl sm:text-4xl font-bold text-rose-700 block">0</span>
+                            <span class="text-xs font-medium text-rose-500 uppercase tracking-wider">Menit</span>
+                        </div>
+                        <div class="bg-white/80 p-3 sm:p-4 rounded-2xl border border-rose-100 shadow-sm">
+                            <span id="counterSeconds" class="font-heading text-3xl sm:text-4xl font-bold text-rose-700 block">0</span>
+                            <span class="text-xs font-medium text-rose-500 uppercase tracking-wider">Detik</span>
+                        </div>
+                    </div>
+
+                    <p id="counterSubtext" class="text-xs text-rose-600/90 italic mt-4 font-medium">
+                        Setiap detik adalah langkah Indah yang kita ukir bersama 💕
+                    </p>
+                </div>
+
+                <!-- CTA Buttons -->
+                <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
+                    <a href="#about" class="px-6 py-3.5 rounded-full bg-rose-600 text-white font-semibold shadow-lg shadow-rose-500/30 hover:bg-rose-700 hover:shadow-rose-600/40 transition-all flex items-center gap-2 text-sm">
+                        <span>Jelajahi Rumah Cinta Kami</span>
+                        <i class="fa-solid fa-arrow-down text-xs"></i>
+                    </a>
+                    <a href="#ecosystem" class="px-6 py-3.5 rounded-full bg-white text-rose-700 font-semibold border border-rose-200 shadow-md hover:bg-rose-50 transition-all flex items-center gap-2 text-sm">
+                        <i class="fa-solid fa-compass-drafting text-rose-500"></i>
+                        <span>Aplikasi Terlampir</span>
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- 2. DESKRIPSI HUBUNGAN (OUR LOVE STORY) -->
+        <section id="about" class="max-w-5xl mx-auto px-4 scroll-mt-24">
+            <div class="glass-card rounded-3xl p-8 sm:p-12 relative overflow-hidden border border-rose-100">
+                <div class="text-center space-y-2 mb-10">
+                    <span class="text-rose-500 font-semibold text-xs uppercase tracking-widest block">Kisah & Filosofi Cinta</span>
+                    <h2 class="font-heading text-3xl sm:text-4xl font-bold text-rose-950">Rumah Tempat Kita Pulang</h2>
+                    <div class="w-16 h-1 bg-rose-400 mx-auto rounded-full mt-2"></div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div class="space-y-4 text-sm sm:text-base leading-relaxed text-rose-900/90">
+                        <p class="first-letter:text-4xl first-letter:font-heading first-letter:font-bold first-letter:text-rose-600 first-letter:mr-1">
+                            Hubungan kami berdua bukan sekadar tentang dua insan yang bertemu, melainkan tentang dua jiwa yang menemukan tempat pulang terbaiknya. Berawal dari komunikasi formal antara <strong class="text-rose-700">"Si kakak"</strong> yang membimbing dan <strong class="text-rose-700">"Tia"</strong> yang bertanya, takdir dengan lembut merajut keterikatan yang begitu peka dan mendalam.
+                        </p>
+                        <p>
+                            Seiring berjalannya waktu, sapaan formal itu melebur menjadi panggilan kesayangan yang penuh dengan kehangatan: <strong class="text-rose-600">"Mbull"</strong> dan <strong class="text-rose-600">"Dedek"</strong>. Dalam setiap tawa, cerita keseharian, hingga perkelahian kecil yang manis, kami membangun pondasi cinta berbasis keterbukaan, rasa hormat, dan proteksi yang tak terbatas.
+                        </p>
+                    </div>
+
+                    <div class="space-y-4 text-sm sm:text-base leading-relaxed text-rose-900/90 bg-rose-50/70 p-6 rounded-2xl border border-rose-200/60">
+                        <div class="flex items-center gap-3 text-rose-700 font-bold mb-1">
+                            <i class="fa-solid fa-quote-left text-2xl text-rose-400"></i>
+                            <span>Prinsip Hubungan Mbull & Dedek</span>
+                        </div>
+                        <ul class="space-y-3">
+                            <li class="flex items-start gap-2.5">
+                                <i class="fa-solid fa-circle-check text-rose-500 mt-1 text-xs"></i>
+                                <span><strong>Saling Menjaga & Protektif:</strong> Mbull adalah pelindung & tempat Dedek mengadu, sementara Dedek adalah penenang & sumber kebahagiaan Mbull.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <i class="fa-solid fa-circle-check text-rose-500 mt-1 text-xs"></i>
+                                <span><strong>Komunikasi Tanpa Rahasia:</strong> Segala hal dibicarakan dengan terbuka, dengan kejujuran sebagai napas utama hubungan.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <i class="fa-solid fa-circle-check text-rose-500 mt-1 text-xs"></i>
+                                <span><strong>Tumbuh Bersama:</strong> Saling mendukung pendidikan, cita-cita, dan kesehatan lahir-batin setiap hari.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Cute Quote Card at bottom -->
+                <div class="mt-8 pt-6 border-t border-rose-200/60 text-center">
+                    <p class="font-cursive text-2xl sm:text-3xl text-rose-700">
+                        "Di mana pun kita berada, selama ada Mbull dan Dedek, di situlah rumah kita berada."
+                    </p>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 3. BIOGRAFI KAMI (BIOGRAPHIES) -->
+        <section id="biography" class="max-w-6xl mx-auto px-4 scroll-mt-24">
+            <div class="text-center space-y-2 mb-12">
+                <span class="text-rose-500 font-semibold text-xs uppercase tracking-widest block">Mengenal Lebih Dekat</span>
+                <h2 class="font-heading text-3xl sm:text-4xl font-bold text-rose-950">Biografi Sepasang Kekasih</h2>
+                <p class="text-xs sm:text-sm text-rose-700">Dua kepribadian unik yang saling melengkapi dalam ikatan kasih sayang</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                
+                <!-- CARD 1: RADEN ANTASEÑA KARTASASMITA (MBULL) -->
+                <div class="glass-card rounded-3xl p-6 sm:p-8 border border-rose-200/80 hover:shadow-2xl transition-all duration-300 relative group overflow-hidden">
+                    <div class="absolute top-0 right-0 w-28 h-28 bg-gradient-to-bl from-rose-200 to-transparent rounded-bl-full pointer-events-none"></div>
+
+                    <!-- Header Profile -->
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-tr from-rose-500 to-rose-400 text-white flex items-center justify-center text-3xl font-bold shadow-md relative">
+                            <!-- Foto Profil Mbull (Ganti 'mbull.jpg' dengan nama file / URL foto kamu) -->
+                            <img src="Foto_Mbull.jpeg" alt="Raden Antasena Kartasasmita" class="w-full h-full object-cover rounded-2xl absolute inset-0 z-10" onerror="this.style.display='none'">
+                            
+                            <!-- Ikon Fallback (Tampil jika foto belum dimasukkan/error) -->
+                            <i class="fa-solid fa-user-astronaut"></i>
+
+                            <!-- Badge Mbull -->
+                            <span class="absolute -bottom-1 -right-1 bg-warmgold text-white text-[10px] p-1 rounded-full px-2 font-semibold z-20">Mbull</span>
+                        </div>
+                        <div>
+                            <span class="text-xs text-rose-500 font-semibold uppercase tracking-wider block">Cowok / Mbull</span>
+                            <h3 class="font-heading text-xl sm:text-2xl font-bold text-rose-950">Raden Antasena Kartasasmita</h3>
+                            <p class="text-xs text-rose-700 mt-0.5">Mahasiswa Teknik Elektro STEI ITB</p>
+                        </div>
+                    </div>
+
+                    <!-- Bio Details Grid -->
+                    <div class="space-y-3 text-xs sm:text-sm">
+                        <div class="p-3 rounded-xl bg-white/80 border border-rose-100 flex items-center justify-between">
+                            <span class="text-rose-500 font-medium"><i class="fa-solid fa-id-badge w-5 text-rose-400"></i> Panggilan Awal</span>
+                            <span class="font-bold text-rose-900">Kakak</span>
+                        </div>
+                        <div class="p-3 rounded-xl bg-white/80 border border-rose-100 flex items-center justify-between">
+                            <span class="text-rose-500 font-medium"><i class="fa-solid fa-heart w-5 text-rose-400"></i> Panggilan Sayang</span>
+                            <span class="font-bold text-rose-600 bg-rose-100 px-2.5 py-0.5 rounded-full">Mbull</span>
+                        </div>
+                        <div class="p-3 rounded-xl bg-white/80 border border-rose-100 flex items-center justify-between">
+                            <span class="text-rose-500 font-medium"><i class="fa-solid fa-cake-candles w-5 text-rose-400"></i> Tanggal Lahir</span>
+                            <span class="font-semibold text-rose-900">20 Maret 2008</span>
+                        </div>
+                        <div class="p-3 rounded-xl bg-white/80 border border-rose-100 flex items-center justify-between">
+                            <span class="text-rose-500 font-medium"><i class="fa-solid fa-graduation-cap w-5 text-rose-400"></i> Pendidikan</span>
+                            <span class="font-semibold text-rose-900">Teknik Elektro ITB</span>
+                        </div>
+                        <div class="p-3 rounded-xl bg-white/80 border border-rose-100 flex items-center justify-between">
+                            <span class="text-rose-500 font-medium"><i class="fa-solid fa-hand-holding-heart w-5 text-rose-400"></i> Love Language</span>
+                            <span class="font-semibold text-rose-900">Acts of Service & Quality Time</span>
+                        </div>
+                    </div>
+
+                    <!-- Traits Badges -->
+                    <div class="mt-6">
+                        <span class="text-xs font-semibold text-rose-800 uppercase tracking-wider block mb-2">Karakter & Sikap Khas:</span>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-rose-100 text-rose-800 text-xs rounded-full font-medium">Analitis & Tekun</span>
+                            <span class="px-3 py-1 bg-rose-100 text-rose-800 text-xs rounded-full font-medium">Sangat Protektif</span>
+                            <span class="px-3 py-1 bg-rose-100 text-rose-800 text-xs rounded-full font-medium">Perhatian Detail</span>
+                            <span class="px-3 py-1 bg-rose-100 text-rose-800 text-xs rounded-full font-medium">Tempat Sandaran</span>
+                            <span class="px-3 py-1 bg-rose-100 text-rose-800 text-xs rounded-full font-medium">Sabar Banget</span>
+                        </div>
+                    </div>
+
+                    <p class="mt-6 text-xs sm:text-sm text-rose-800/90 italic bg-rose-50/50 p-3 rounded-xl border border-rose-100">
+                        "Fokus utama Mbull dalam hidup ini adalah memastikan Dedek selalu aman, tersenyum, dan merasa dicintai setiap waktu."
+                    </p>
+                </div>
+
+                <!-- CARD 2: SYIFA SEPTIA PUTRI (DEDEK) -->
+                <div class="glass-card rounded-3xl p-6 sm:p-8 border border-rose-200/80 hover:shadow-2xl transition-all duration-300 relative group overflow-hidden">
+                    <div class="absolute top-0 right-0 w-28 h-28 bg-gradient-to-bl from-rose-200 to-transparent rounded-bl-full pointer-events-none"></div>
+
+                    <!-- Header Profile -->
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-tr from-rose-500 to-rose-400 text-white flex items-center justify-center text-3xl font-bold shadow-md relative">
+                            <!-- Foto Profil Dedek (Ganti 'dedek.jpg' dengan nama file / URL foto Dedek) -->
+                            <img src="Foto_Dedek.jpeg" alt="Syifa Septia Putri" class="w-full h-full object-cover rounded-2xl absolute inset-0 z-10" onerror="this.style.display='none'">
+                            
+                            <!-- Ikon Fallback (Tampil jika foto belum dimasukkan/error) -->
+                            <i class="fa-solid fa-crown"></i>
+
+                            <!-- Badge Dedek -->
+                            <span class="absolute -bottom-1 -right-1 bg-rose-600 text-white text-[10px] p-1 rounded-full px-2 font-semibold z-20">Dedek</span>
+                        </div>
+                        <div>
+                            <span class="text-xs text-rose-500 font-semibold uppercase tracking-wider block">Cewek / Dedek</span>
+                            <h3 class="font-heading text-xl sm:text-2xl font-bold text-rose-950">Syifa Septia Putri</h3>
+                            <p class="text-xs text-rose-700 mt-0.5">Siswa Kelas 12, SMAN 2 Cibinong</p>
+                        </div>
+                    </div>
+
+                    <!-- Bio Details Grid -->
+                    <div class="space-y-3 text-xs sm:text-sm">
+                        <div class="p-3 rounded-xl bg-white/80 border border-rose-100 flex items-center justify-between">
+                            <span class="text-rose-500 font-medium"><i class="fa-solid fa-id-badge w-5 text-rose-400"></i> Panggilan Awal</span>
+                            <span class="font-bold text-rose-900">Tia</span>
+                        </div>
+                        <div class="p-3 rounded-xl bg-white/80 border border-rose-100 flex items-center justify-between">
+                            <span class="text-rose-500 font-medium"><i class="fa-solid fa-heart w-5 text-rose-400"></i> Panggilan Sayang</span>
+                            <span class="font-bold text-rose-600 bg-rose-100 px-2.5 py-0.5 rounded-full">Dedek</span>
+                        </div>
+                        <div class="p-3 rounded-xl bg-white/80 border border-rose-100 flex items-center justify-between">
+                            <span class="text-rose-500 font-medium"><i class="fa-solid fa-cake-candles w-5 text-rose-400"></i> Tanggal Lahir</span>
+                            <span class="font-semibold text-rose-900">26 Februari 2009</span>
+                        </div>
+                        <div class="p-3 rounded-xl bg-white/80 border border-rose-100 flex items-center justify-between">
+                            <span class="text-rose-500 font-medium"><i class="fa-solid fa-graduation-cap w-5 text-rose-400"></i> Pendidikan</span>
+                            <span class="font-semibold text-rose-900">Kelas 12, SMAN 2 Cibinong</span>
+                        </div>
+                        <div class="p-3 rounded-xl bg-white/80 border border-rose-100 flex items-center justify-between">
+                            <span class="text-rose-500 font-medium"><i class="fa-solid fa-wand-magic-sparkles w-5 text-rose-400"></i> Love Language</span>
+                            <span class="font-semibold text-rose-900">Words of Affirmation & Soft Affection</span>
+                        </div>
+                    </div>
+
+                    <!-- Traits Badges -->
+                    <div class="mt-6">
+                        <span class="text-xs font-semibold text-rose-800 uppercase tracking-wider block mb-2">Karakter & Sikap Khas:</span>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-rose-100 text-rose-800 text-xs rounded-full font-medium">Hangat & Ceria</span>
+                            <span class="px-3 py-1 bg-rose-100 text-rose-800 text-xs rounded-full font-medium">Manja Gemas</span>
+                            <span class="px-3 py-1 bg-rose-100 text-rose-800 text-xs rounded-full font-medium">Sangat Manis</span>
+                            <span class="px-3 py-1 bg-rose-100 text-rose-800 text-xs rounded-full font-medium">Penyemangat Mbull</span>
+                            <span class="px-3 py-1 bg-rose-100 text-rose-800 text-xs rounded-full font-medium">Penuh Perhatian</span>
+                        </div>
+                    </div>
+
+                    <p class="mt-6 text-xs sm:text-sm text-rose-800/90 italic bg-rose-50/50 p-3 rounded-xl border border-rose-100">
+                        "Bersama Mbull, Dedek selalu merasa tenang, dilindungi, dan bahagia karena tahu ada Mbull yang selalu siap meluk."
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- 4. SIKAP KAMI & DINAMIKA HUBUNGAN -->
+        <section id="dynamics" class="max-w-5xl mx-auto px-4 scroll-mt-24">
+            <div class="text-center space-y-2 mb-10">
+                <span class="text-rose-500 font-semibold text-xs uppercase tracking-widest block">Harmoni Pasangan</span>
+                <h2 class="font-heading text-3xl sm:text-4xl font-bold text-rose-950">Sikap Kami & Dinamika Hubungan</h2>
+                <p class="text-xs sm:text-sm text-rose-700">Bagaimana Mbull dan Dedek saling memperlakukan satu sama lain setiap hari</p>
+            </div>
+
+            <!-- Tab Buttons -->
+            <div class="flex justify-center p-1.5 bg-rose-100/70 rounded-full max-w-md mx-auto mb-8 border border-rose-200">
+                <button id="tabMbullBtn" onclick="switchTab('mbull')" class="flex-1 py-2.5 px-4 rounded-full text-xs sm:text-sm font-bold transition-all bg-rose-600 text-white shadow-sm">
+                    <i class="fa-solid fa-shield-heart mr-1"></i> Sikap Mbull
+                </button>
+                <button id="tabDedekBtn" onclick="switchTab('dedek')" class="flex-1 py-2.5 px-4 rounded-full text-xs sm:text-sm font-bold transition-all text-rose-800 hover:text-rose-900">
+                    <i class="fa-solid fa-face-smile-beam mr-1"></i> Sikap Dedek
+                </button>
+                <button id="tabTogetherBtn" onclick="switchTab('together')" class="flex-1 py-2.5 px-4 rounded-full text-xs sm:text-sm font-bold transition-all text-rose-800 hover:text-rose-900">
+                    <i class="fa-solid fa-infinity mr-1"></i> Sikap Bersama
+                </button>
+            </div>
+
+            <!-- Tab Contents -->
+            <div class="glass-card rounded-3xl p-6 sm:p-10 border border-rose-100">
+                
+                <!-- TAB 1: SIKAP MBULL -->
+                <div id="tabMbull" class="space-y-6">
+                    <div class="flex items-center gap-3 border-b border-rose-100 pb-4">
+                        <div class="w-12 h-12 rounded-2xl bg-rose-500 text-white flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-heading text-xl font-bold text-rose-950">Bagaimana Mbull Bersikap kepada Dedek</h3>
+                            <p class="text-xs text-rose-600">Perhatian tulus, perlindungan, dan kesabaran seorang Mbull</p>
+                        </div>
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div class="bg-white/80 p-4 rounded-2xl border border-rose-100 space-y-1">
+                            <h4 class="font-bold text-rose-900 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-heart-pulse text-rose-500"></i> Protektif & Selalu Siap Membantu
+                            </h4>
+                            <p class="text-xs text-rose-800/80 leading-relaxed">
+                                Mbull tidak pernah membiarkan Dedek merasa sendirian. Kapan pun Dedek butuh bantuan, Mbull selalu pasang badan dengan cekatan.
+                            </p>
+                        </div>
+                        <div class="bg-white/80 p-4 rounded-2xl border border-rose-100 space-y-1">
+                            <h4 class="font-bold text-rose-900 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-calendar-check text-rose-500"></i> Peka & Perhatian Detail
+                            </h4>
+                            <p class="text-xs text-rose-800/80 leading-relaxed">
+                                Mbull sangat ingat detail tentang Dedek, bahkan membuatkan web khusus monitoring ciklus menstruasi agar Dedek selalu sehat dan terpantau.
+                            </p>
+                        </div>
+                        <div class="bg-white/80 p-4 rounded-2xl border border-rose-100 space-y-1">
+                            <h4 class="font-bold text-rose-900 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-feather-pointed text-rose-500"></i> Pendengar Setia & Sabar
+                            </h4>
+                            <p class="text-xs text-rose-800/80 leading-relaxed">
+                                Apapun keluh kesah Dedek, Mbull selalu mendengarkan dengan penuh kesabaran tanpa menghakimi.
+                            </p>
+                        </div>
+                        <div class="bg-white/80 p-4 rounded-2xl border border-rose-100 space-y-1">
+                            <h4 class="font-bold text-rose-900 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-gem text-rose-500"></i> Menjadikan Dedek Ratu
+                            </h4>
+                            <p class="text-xs text-rose-800/80 leading-relaxed">
+                                Di mata Mbull, Dedek adalah prioritas dan karunia terindah yang harus dijaga dengan penuh kehormatan.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 2: SIKAP DEDEK -->
+                <div id="tabDedek" class="hidden space-y-6">
+                    <div class="flex items-center gap-3 border-b border-rose-100 pb-4">
+                        <div class="w-12 h-12 rounded-2xl bg-pink-500 text-white flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-sun"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-heading text-xl font-bold text-rose-950">Bagaimana Dedek Bersikap kepada Mbull</h3>
+                            <p class="text-xs text-rose-600">Kehangatan, kemanjaan manis, dan dukungan tulus Dedek</p>
+                        </div>
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div class="bg-white/80 p-4 rounded-2xl border border-rose-100 space-y-1">
+                            <h4 class="font-bold text-rose-900 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-face-smile text-rose-500"></i> Penyemangat Utama Mbull
+                            </h4>
+                            <p class="text-xs text-rose-800/80 leading-relaxed">
+                                Saat Mbull lelah dengan tugas perkuliahan ITB, kehangatan kata-kata dan senyuman Dedek langsung menjadi obat penawar paling ampuh.
+                            </p>
+                        </div>
+                        <div class="bg-white/80 p-4 rounded-2xl border border-rose-100 space-y-1">
+                            <h4 class="font-bold text-rose-900 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-cat text-rose-500"></i> Manja & Lembut Gemas
+                            </h4>
+                            <p class="text-xs text-rose-800/80 leading-relaxed">
+                                Tingkah manja manis Dedek selalu sukses bikin Mbull tersenyum dan makin sayang setiap hari.
+                            </p>
+                        </div>
+                        <div class="bg-white/80 p-4 rounded-2xl border border-rose-100 space-y-1">
+                            <h4 class="font-bold text-rose-900 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-hands-holding-circle text-rose-500"></i> Perhatian Sepenuh Hati
+                            </h4>
+                            <p class="text-xs text-rose-800/80 leading-relaxed">
+                                Dedek selalu rajin mengingatkan Mbull makan, istirahat, dan menjaga kesehatan di tengah kesibukan kuliahnya.
+                            </p>
+                        </div>
+                        <div class="bg-white/80 p-4 rounded-2xl border border-rose-100 space-y-1">
+                            <h4 class="font-bold text-rose-900 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-clover text-rose-500"></i> Ketulusan Tanpa Batas
+                            </h4>
+                            <p class="text-xs text-rose-800/80 leading-relaxed">
+                                Dedek menerima Mbull seutuhnya dan selalu memberikan kepercayaan penuh dengan rasa bangga.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 3: SIKAP BERSAMA -->
+                <div id="tabTogether" class="hidden space-y-6">
+                    <div class="flex items-center gap-3 border-b border-rose-100 pb-4">
+                        <div class="w-12 h-12 rounded-2xl bg-warmgold text-white flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-handshake-angle"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-heading text-xl font-bold text-rose-950">Dinamika & Sikap Antarkami</h3>
+                            <p class="text-xs text-rose-600">Fondasi hubungan yang kokoh, sehat, dan penuh canda tawa</p>
+                        </div>
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div class="bg-white/80 p-4 rounded-2xl border border-rose-100 space-y-1">
+                            <h4 class="font-bold text-rose-900 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-comments text-rose-500"></i> Keterbukaan Komunikasi
+                            </h4>
+                            <p class="text-xs text-rose-800/80 leading-relaxed">
+                                Kami membiasakan untuk langsung menceritakan apapun yang dirasakan tanpa ada yang dipendam.
+                            </p>
+                        </div>
+                        <div class="bg-white/80 p-4 rounded-2xl border border-rose-100 space-y-1">
+                            <h4 class="font-bold text-rose-900 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-house-chimney text-rose-500"></i> Merasa Aman & Homey
+                            </h4>
+                            <p class="text-xs text-rose-800/80 leading-relaxed">
+                                Bersama satu sama lain terasa seperti pulang ke rumah yang hangat setelah melewati lelahnya dunia luar.
+                            </p>
+                        </div>
+                        <div class="bg-white/80 p-4 rounded-2xl border border-rose-100 space-y-1">
+                            <h4 class="font-bold text-rose-900 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-face-grin-tears text-rose-500"></i> Canda Tawa & Humor Manis
+                            </h4>
+                            <p class="text-xs text-rose-800/80 leading-relaxed">
+                                Panggilan 'Mbull' dan 'Dedek' jadi simbol keceriaan dan keakraban yang selalu mewarnai hari-hari kami.
+                            </p>
+                        </div>
+                        <div class="bg-white/80 p-4 rounded-2xl border border-rose-100 space-y-1">
+                            <h4 class="font-bold text-rose-900 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-seedling text-rose-500"></i> Komitmen Jangka Panjang
+                            </h4>
+                            <p class="text-xs text-rose-800/80 leading-relaxed">
+                                Saling menjaga kesehatan mental dan fisik, serta mendoakan kebaikan untuk masa depan bersama.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- 5. TIMELINE HUBUNGAN (MILESTONES) -->
+        <section id="timeline" class="max-w-5xl mx-auto px-4 scroll-mt-24">
+            <div class="text-center space-y-2 mb-12">
+                <span class="text-rose-500 font-semibold text-xs uppercase tracking-widest block">Perjalanan Berharga</span>
+                <h2 class="font-heading text-3xl sm:text-4xl font-bold text-rose-950">Timeline Hubungan Kami</h2>
+                <p class="text-xs sm:text-sm text-rose-700">Jejak langkah bersejarah dari awal berkenalan hingga melangkah bersama</p>
+            </div>
+
+            <div class="relative border-l-2 border-rose-300/70 ml-4 sm:ml-32 space-y-10">
+                
+                <!-- EVENT 1 -->
+                <div class="relative pl-6 sm:pl-8 group">
+                    <div class="absolute -left-[17px] top-1.5 w-8 h-8 rounded-full bg-white border-4 border-rose-500 flex items-center justify-center text-rose-600 text-xs shadow-md group-hover:scale-110 transition-transform">
+                        <i class="fa-brands fa-instagram"></i>
+                    </div>
+                    
+                    <div class="sm:absolute sm:-left-36 sm:top-1 sm:text-right w-28 mb-2 sm:mb-0">
+                        <span class="inline-block px-2.5 py-1 rounded-md bg-rose-100 text-rose-800 text-xs font-bold">
+                            3 April 2026
+                        </span>
+                    </div>
+
+                    <div class="glass-card rounded-2xl p-5 border border-rose-100 hover:shadow-lg transition-all">
+                        <span class="text-[11px] font-semibold uppercase text-rose-500 tracking-wider">Awal Mula Perkenalan</span>
+                        <h3 class="font-heading text-lg font-bold text-rose-950 mt-0.5">Sapaan Pertama di Instagram</h3>
+                        <p class="text-xs sm:text-sm text-rose-800/90 mt-2 leading-relaxed">
+                            Momen berharga di mana <strong>Tia</strong> mengirimkan DM pertama kepada <strong>Kak Sena</strong> untuk bertanya mengenai STEI ITB. Pertanyaan akademis yang menjadi pintu pembuka takdir indah kami berdua.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- EVENT 2 -->
+                <div class="relative pl-6 sm:pl-8 group">
+                    <div class="absolute -left-[17px] top-1.5 w-8 h-8 rounded-full bg-white border-4 border-rose-500 flex items-center justify-center text-rose-600 text-xs shadow-md group-hover:scale-110 transition-transform">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </div>
+                    
+                    <div class="sm:absolute sm:-left-36 sm:top-1 sm:text-right w-28 mb-2 sm:mb-0">
+                        <span class="inline-block px-2.5 py-1 rounded-md bg-rose-100 text-rose-800 text-xs font-bold">
+                            8 April 2026
+                        </span>
+                    </div>
+
+                    <div class="glass-card rounded-2xl p-5 border border-rose-100 hover:shadow-lg transition-all">
+                        <span class="text-[11px] font-semibold uppercase text-rose-500 tracking-wider">Semakin Dekat</span>
+                        <h3 class="font-heading text-lg font-bold text-rose-950 mt-0.5">Pindah Komunikasi ke WhatsApp</h3>
+                        <p class="text-xs sm:text-sm text-rose-800/90 mt-2 leading-relaxed">
+                            Obrolan berlanjut ke WhatsApp. Dari bahasan seputar perkuliahan, percakapan tumbuh menjadi hangat, penuh cerita harian dari pagi hingga malam, dan rasa nyaman yang mulai bersemi.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- EVENT 3 -->
+                <div class="relative pl-6 sm:pl-8 group">
+                    <div class="absolute -left-[17px] top-1.5 w-8 h-8 rounded-full bg-rose-600 border-4 border-rose-200 text-white flex items-center justify-center text-xs shadow-lg pulse-heart">
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+                    
+                    <div class="sm:absolute sm:-left-36 sm:top-1 sm:text-right w-28 mb-2 sm:mb-0">
+                        <span class="inline-block px-2.5 py-1 rounded-md bg-rose-600 text-white text-xs font-bold shadow-sm">
+                            7 Agustus 2026
+                        </span>
+                    </div>
+
+                    <div class="glass-card rounded-2xl p-5 border-2 border-rose-300 bg-rose-50/80 shadow-md hover:shadow-xl transition-all">
+                        <div class="flex items-center justify-between mb-1">
+                            <span class="text-[11px] font-bold uppercase text-rose-600 tracking-wider">Momen Paling Bersejarah</span>
+                            <span class="bg-rose-200 text-rose-800 text-[10px] px-2 py-0.5 rounded-full font-bold">Official Couple</span>
+                        </div>
+                        <h3 class="font-heading text-lg font-bold text-rose-950">Resmi Berpacaran (Mbull & Dedek)</h3>
+                        <p class="text-xs sm:text-sm text-rose-800/90 mt-2 leading-relaxed">
+                            Hari resmi di mana kami menyatakan perasaan tulus satu sama lain. Panggilan <strong>Kak Sena & Tia</strong> secara resmi berganti menjadi <strong>Mbull & Dedek</strong>. Tanggal ini menjadi komitmen awal rumah cinta kami.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- EVENT 4 -->
+                <div class="relative pl-6 sm:pl-8 group">
+                    <div class="absolute -left-[17px] top-1.5 w-8 h-8 rounded-full bg-white border-4 border-rose-500 flex items-center justify-center text-rose-600 text-xs shadow-md group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                    
+                    <div class="sm:absolute sm:-left-36 sm:top-1 sm:text-right w-28 mb-2 sm:mb-0">
+                        <span class="inline-block px-2.5 py-1 rounded-md bg-rose-100 text-rose-800 text-xs font-bold">
+                            19 Sept 2026
+                        </span>
+                    </div>
+
+                    <div class="glass-card rounded-2xl p-5 border border-rose-100 hover:shadow-lg transition-all">
+                        <span class="text-[11px] font-semibold uppercase text-rose-500 tracking-wider">Pertemuan Tatap Muka</span>
+                        <h3 class="font-heading text-lg font-bold text-rose-950 mt-0.5">First Meet di Bogor 🍃</h3>
+                        <p class="text-xs sm:text-sm text-rose-800/90 mt-2 leading-relaxed">
+                            Momen berharga tatap muka pertama kali di Kota Bogor. Melihat senyuman nyata secara langsung, menghabiskan waktu bersama, dan mengukir kenangan manis yang tak terhapuskan.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- EVENT 5 -->
+                <div class="relative pl-6 sm:pl-8 group">
+                    <div class="absolute -left-[17px] top-1.5 w-8 h-8 rounded-full bg-warmgold text-white flex items-center justify-center text-xs shadow-md">
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    
+                    <div class="sm:absolute sm:-left-36 sm:top-1 sm:text-right w-28 mb-2 sm:mb-0">
+                        <span class="inline-block px-2.5 py-1 rounded-md bg-amber-100 text-amber-800 text-xs font-bold">
+                            Hari Ini & Nanti
+                        </span>
+                    </div>
+
+                    <div class="glass-card rounded-2xl p-5 border border-rose-100 hover:shadow-lg transition-all">
+                        <span class="text-[11px] font-semibold uppercase text-amber-600 tracking-wider">Masa Depan Indah</span>
+                        <h3 class="font-heading text-lg font-bold text-rose-950 mt-0.5">Tumbuh Bersama & Saling Menjaga</h3>
+                        <p class="text-xs sm:text-sm text-rose-800/90 mt-2 leading-relaxed">
+                            Perjalanan cinta kami terus berlanjut setiap detik. Kami berkomitmen untuk terus saling mendukung studi, impian, kesehatan, dan kebahagiaan hingga masa depan panjang menanti.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- 6. PORTAL WEBSITE TERLAMPIR (ECOSYSTEM HUB) -->
+        <section id="ecosystem" class="max-w-6xl mx-auto px-4 scroll-mt-24">
+            <div class="text-center space-y-2 mb-12">
+                <span class="text-rose-500 font-semibold text-xs uppercase tracking-widest block">Ekosistem Digital Kami</span>
+                <h2 class="font-heading text-3xl sm:text-4xl font-bold text-rose-950">Website Terlampir Mbull & Dedek</h2>
+                <p class="text-xs sm:text-sm text-rose-700">Kumpulan aplikasi & portal khusus yang Mbull ciptakan untuk Dedek</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- LINK 1: MENSTRUASI MONITORING -->
+                <div class="glass-card rounded-3xl p-6 border border-rose-200/80 flex flex-col justify-between hover:shadow-xl transition-all duration-300 relative group overflow-hidden">
+                    <div class="space-y-4">
+                        <div class="w-14 h-14 rounded-2xl bg-rose-500 text-white flex items-center justify-center text-2xl shadow-md group-hover:scale-110 transition-transform">
+                            🌸
+                        </div>
+                        <span class="px-2.5 py-1 rounded-full bg-rose-100 text-rose-700 text-[11px] font-bold">Fitur Perhatian Utama</span>
+                        <h3 class="font-heading text-xl font-bold text-rose-950">Monitoring Menstruasi Dedek</h3>
+                        <p class="text-xs sm:text-sm text-rose-800/80 leading-relaxed">
+                            Aplikasi khusus yang dibuat Mbull untuk mencatat dan memantau siklus menstruasi Dedek secara akurat demi kesehatan Dedek tercinta.
+                        </p>
+                    </div>
+                    
+                    <div class="mt-6 pt-4 border-t border-rose-100 flex items-center justify-between">
+                        <span class="text-[11px] text-rose-500 font-mono">Siklus-Dedek</span>
+                        <a href="https://rdn-ak.github.io/Siklus-Dedek/" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-full bg-rose-600 text-white text-xs font-bold hover:bg-rose-700 transition-colors flex items-center gap-1.5 shadow-sm">
+                            <span>Buka Web</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- LINK 2: WEB GALERI FOTO -->
+                <div class="glass-card rounded-3xl p-6 border border-rose-200/80 flex flex-col justify-between hover:shadow-xl transition-all duration-300 relative group overflow-hidden">
+                    <div class="space-y-4">
+                        <div class="w-14 h-14 rounded-2xl bg-pink-500 text-white flex items-center justify-center text-2xl shadow-md group-hover:scale-110 transition-transform">
+                            🖼️
+                        </div>
+                        <span class="px-2.5 py-1 rounded-full bg-pink-100 text-pink-700 text-[11px] font-bold">Album Momen Berharga</span>
+                        <h3 class="font-heading text-xl font-bold text-rose-950">Galeri Foto Kita</h3>
+                        <p class="text-xs sm:text-sm text-rose-800/80 leading-relaxed">
+                            Portal galeri foto khusus tempat menyimpan potret-potret cantik Dedek, momen kencan, dan kenangan indah bersama Mbull.
+                        </p>
+                    </div>
+                    
+                    <div class="mt-6 pt-4 border-t border-rose-100 flex items-center justify-between">
+                        <span class="text-[11px] text-rose-500 font-mono">Dedek & Mbull</span>
+                        <a href="https://rdn-ak.github.io/Galeri/" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-full bg-rose-600 text-white text-xs font-bold hover:bg-rose-700 transition-colors flex items-center gap-1.5 shadow-sm">
+                            <span>Buka Web</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- LINK 3: KEJUTAN & RUANG PROJECT LAIN -->
+                <div class="glass-card rounded-3xl p-6 border border-rose-200/80 flex flex-col justify-between hover:shadow-xl transition-all duration-300 relative group overflow-hidden md:col-span-2 lg:col-span-1">
+                    <div class="space-y-4">
+                        <div class="w-14 h-14 rounded-2xl bg-warmgold text-white flex items-center justify-center text-2xl shadow-md group-hover:scale-110 transition-transform">
+                            💌
+                        </div>
+                        <span class="px-2.5 py-1 rounded-full bg-amber-100 text-amber-800 text-[11px] font-bold">Eksperimen & Kejutan</span>
+                        <h3 class="font-heading text-xl font-bold text-rose-950">Proyek Cinta & Kejutan Mendatang</h3>
+                        <p class="text-xs sm:text-sm text-rose-800/80 leading-relaxed">
+                            Ruang khusus karya-karya web buatan Mbull berikutnya. Akan terus diperbarui seiring berjalannya waktu hubungan kami.
+                        </p>
+                    </div>
+                    
+                    <div class="mt-6 pt-4 border-t border-rose-100 flex items-center justify-between">
+                        <span class="text-[11px] text-rose-500 font-mono">Coming Soon Project</span>
+                        <button onclick="triggerSurpriseModal()" class="px-4 py-2 rounded-full bg-amber-500 text-white text-xs font-bold hover:bg-amber-600 transition-colors flex items-center gap-1.5 shadow-sm">
+                            <i class="fa-solid fa-gift"></i>
+                            <span>Intip Kejutan</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- 7. INTERACTIVE LOVE REASON GENERATOR -->
+        <section class="max-w-4xl mx-auto px-4">
+            <div class="glass-card rounded-3xl p-8 border border-rose-200 bg-gradient-to-br from-rose-50 to-pink-50 text-center space-y-6 relative overflow-hidden shadow-xl">
+                <div class="w-12 h-12 rounded-full bg-rose-500 text-white mx-auto flex items-center justify-center text-xl shadow-md">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                </div>
+                
+                <div class="space-y-1">
+                    <h3 class="font-heading text-2xl sm:text-3xl font-bold text-rose-950">Alasan Mengapa Mbull Sayang Dedek</h3>
+                    <p class="text-xs sm:text-sm text-rose-700">Klik tombol di bawah untuk memunculkan pesan cinta acak!</p>
+                </div>
+
+                <!-- Display Box -->
+                <div class="bg-white/90 p-6 rounded-2xl border border-rose-200 shadow-inner min-h-[110px] flex items-center justify-center transition-all duration-300">
+                    <p id="loveReasonText" class="text-sm sm:text-base font-semibold text-rose-800 italic leading-relaxed">
+                        "Setiap kali Dedek tersenyum, semua rasa lelah Mbull langsung hilang tanpa sisa." 💕
+                    </p>
+                </div>
+
+                <button onclick="generateLoveReason()" class="px-6 py-3 rounded-full bg-rose-600 text-white font-bold text-xs sm:text-sm shadow-md hover:bg-rose-700 hover:scale-105 active:scale-95 transition-all flex items-center gap-2 mx-auto">
+                    <i class="fa-solid fa-dice text-rose-200"></i>
+                    <span>Acak Pesan Cinta Lainnya</span>
+                </button>
+            </div>
+        </section>
+
+
+        <!-- 8. PAPAN PESAN CINTA INTERAKTIF (DIGITAL LOVE NOTES) -->
+        <section id="notes" class="max-w-6xl mx-auto px-4 scroll-mt-24">
+            <div class="text-center space-y-2 mb-10">
+                <span class="text-rose-500 font-semibold text-xs uppercase tracking-widest block">Surat Cinta Digital</span>
+                <h2 class="font-heading text-3xl sm:text-4xl font-bold text-rose-950">Papan Pesan Cinta Interaktif</h2>
+                <p class="text-xs sm:text-sm text-rose-700">Tinggalkan catatan manis di sini. Pesan akan tersimpan langsung di Google Sheets!</p>
+            </div>
+
+            <!-- Note Form & Grid Wrapper -->
+            <div class="grid lg:grid-cols-3 gap-8">
+                
+                <!-- Note Input Form -->
+                <div class="glass-card rounded-3xl p-6 border border-rose-200 h-fit space-y-4">
+                    <h3 class="font-heading text-lg font-bold text-rose-950 flex items-center gap-2">
+                        <i class="fa-solid fa-pen-to-square text-rose-500"></i> Tulis Pesan Cinta Baru
+                    </h3>
+
+                    <form id="loveNoteForm" onsubmit="addLoveNote(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold text-rose-800 mb-1">Pengirim:</label>
+                            <select id="noteAuthor" class="w-full p-2.5 rounded-xl border border-rose-200 bg-white/90 text-xs font-semibold text-rose-900 focus:outline-none focus:ring-2 focus:ring-rose-400">
+                                <option value="Mbull 👦🏻">Mbull (Sena)</option>
+                                <option value="Dedek 👧🏻">Dedek (Syifa)</option>
+                                <option value="Mbull & Dedek 💕">Mbull & Dedek Together</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-rose-800 mb-1">Warna Nota:</label>
+                            <div class="flex items-center gap-3">
+                                <label class="flex items-center gap-1 text-xs text-rose-800 cursor-pointer">
+                                    <input type="radio" name="noteColor" value="bg-pink-100 border-pink-300 text-pink-900" checked class="accent-rose-500"> Soft Pink
+                                </label>
+                                <label class="flex items-center gap-1 text-xs text-rose-800 cursor-pointer">
+                                    <input type="radio" name="noteColor" value="bg-amber-100 border-amber-300 text-amber-900" class="accent-amber-500"> Warm Gold
+                                </label>
+                                <label class="flex items-center gap-1 text-xs text-rose-800 cursor-pointer">
+                                    <input type="radio" name="noteColor" value="bg-rose-100 border-rose-300 text-rose-900" class="accent-rose-500"> Rose Red
+                                </label>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-rose-800 mb-1">Isi Pesan Manis:</label>
+                            <textarea id="noteText" rows="3" required placeholder="Tuliskan kata manis atau janji untuk pasanganmu..." class="w-full p-3 rounded-xl border border-rose-200 bg-white/90 text-xs text-rose-900 placeholder-rose-300 focus:outline-none focus:ring-2 focus:ring-rose-400 resize-none"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-3 rounded-xl bg-rose-600 text-white font-bold text-xs shadow-md hover:bg-rose-700 transition-all flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-paper-plane"></i>
+                            <span>Tempelkan Pesan Cinta</span>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Notes Wall Grid -->
+                <div class="lg:col-span-2">
+                    <div id="notesContainer" class="grid sm:grid-cols-2 gap-4">
+                        <!-- Dynamic sticky notes loaded here via JS -->
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="glass-card border-t border-rose-200 py-10 px-4 mt-20 relative z-10 text-center space-y-4">
+        <div class="max-w-4xl mx-auto space-y-3">
+            <div class="flex items-center justify-center gap-2 text-rose-600 font-heading text-2xl font-bold">
+                <span>Mbull</span>
+                <i class="fa-solid fa-heart text-rose-500 pulse-heart text-lg"></i>
+                <span>Dedek</span>
+            </div>
+            <p class="text-xs text-rose-800/80 max-w-md mx-auto">
+                Dibuat dengan cinta penuh oleh Raden Antasena Kartasasmita (Mbull) khusus untuk Syifa Septia Putri (Dedek tercinta).
+            </p>
+            <div class="pt-2 text-[11px] text-rose-500 font-mono">
+                © 2026 Sena & Dedek Love Sanctuary — All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- MODAL POPUP FOR SURPRISE -->
+    <div id="surpriseModal" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="glass-card bg-white rounded-3xl p-6 sm:p-8 max-w-md w-full space-y-4 text-center border border-rose-200 relative animate-bounce-short">
+            <button onclick="closeSurpriseModal()" class="absolute top-4 right-4 text-rose-400 hover:text-rose-700 text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="w-16 h-16 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center text-3xl mx-auto">
+                🎁
+            </div>
+            <h3 class="font-heading text-xl font-bold text-rose-950">Ruang Kejutan Rahasia!</h3>
+            <p class="text-xs text-rose-800/90 leading-relaxed">
+                "Setiap hari bersamamu adalah kejutan terindah buat Mbull. Web kejutan baru sedang dirancang Mbull dengan penuh rahasia dan kasih sayang!"
+            </p>
+            <button onclick="closeSurpriseModal()" class="px-6 py-2.5 rounded-full bg-rose-600 text-white text-xs font-bold hover:bg-rose-700 transition-all w-full">
+                Tunggu Kejutan Berikutnya 💕
+            </button>
+        </div>
+    </div>
+
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        /* =========================================================
+           1. LIVE TIME COUNTER (BEKERJA SAMA SEJAK 7 AGUSTUS 2026)
+           ========================================================= */
+        const relationshipStartDate = new Date("2026-08-07T00:00:00");
+
+        function updateRelationshipCounter() {
+            const now = new Date();
+            const diff = now - relationshipStartDate;
+
+            if (diff >= 0) {
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+                const minutes = Math.floor((diff / 1000 / 60) % 60);
+                const seconds = Math.floor((diff / 1000) % 60);
+
+                document.getElementById('counterDays').innerText = days;
+                document.getElementById('counterHours').innerText = hours;
+                document.getElementById('counterMinutes').innerText = minutes;
+                document.getElementById('counterSeconds').innerText = seconds;
+                document.getElementById('counterSubtext').innerText = "Setiap detik adalah langkah indah yang kita ukir bersama 💕";
+            } else {
+                // Jika membuka sebelum 7 Agustus 2026 (Countdown)
+                const absDiff = Math.abs(diff);
+                const days = Math.floor(absDiff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((absDiff / (1000 * 60 * 60)) % 24);
+                const minutes = Math.floor((absDiff / 1000 / 60) % 60);
+                const seconds = Math.floor((absDiff / 1000) % 60);
+
+                document.getElementById('counterDays').innerText = days;
+                document.getElementById('counterHours').innerText = hours;
+                document.getElementById('counterMinutes').innerText = minutes;
+                document.getElementById('counterSeconds').innerText = seconds;
+                document.getElementById('counterSubtext').innerText = "Menghitung hari menuju tanggal resmi kita! ✨";
+            }
+        }
+        setInterval(updateRelationshipCounter, 1000);
+        updateRelationshipCounter();
+
+        /* =========================================================
+           2. TAB SWITCHER FOR SIKAP & DINAMIKA HUBUNGAN
+           ========================================================= */
+        function switchTab(activeTab) {
+            const tabs = ['mbull', 'dedek', 'together'];
+            
+            tabs.forEach(tab => {
+                const contentEl = document.getElementById(`tab${tab.charAt(0).toUpperCase() + tab.slice(1)}`);
+                const btnEl = document.getElementById(`tab${tab.charAt(0).toUpperCase() + tab.slice(1)}Btn`);
+
+                if (tab === activeTab) {
+                    contentEl.classList.remove('hidden');
+                    btnEl.className = "flex-1 py-2.5 px-4 rounded-full text-xs sm:text-sm font-bold transition-all bg-rose-600 text-white shadow-sm";
+                } else {
+                    contentEl.classList.add('hidden');
+                    btnEl.className = "flex-1 py-2.5 px-4 rounded-full text-xs sm:text-sm font-bold transition-all text-rose-800 hover:text-rose-900";
+                }
+            });
+        }
+
+        /* =========================================================
+           3. RANDOM LOVE REASON GENERATOR
+           ========================================================= */
+        const loveReasons = [
+            "Setiap kali Dedek tersenyum, semua rasa lelah Mbull langsung hilang tanpa sisa. 💕",
+            "Cara Dedek perhatian sama Mbull selalu bikin Mbull merasa jadi cowok paling beruntung di dunia.",
+            "Dedek adalah rumah paling nyaman untuk Mbull pulang dari lelahnya aktivitas perkuliahan.",
+            "Ketulusan dan kehangatan hati Dedek yang selalu bikin Mbull makin sayang dari hari ke hari.",
+            "Suara dan tingkah manja Dedek selalu sukses bikin hari Mbull jadi jauh lebih berwarna.",
+            "Dedek selalu mengerti dan mendukung Mbull dengan penuh rasa percaya dan rasa bangga.",
+            "Karena bersama Dedek, Mbull bisa menjadi diri sendiri dengan rasa aman dan bahagia seutuhnya."
+        ];
+
+        function generateLoveReason() {
+            const textEl = document.getElementById('loveReasonText');
+            const randomIndex = Math.floor(Math.random() * loveReasons.length);
+            
+            textEl.style.opacity = '0';
+            setTimeout(() => {
+                textEl.innerText = `"${loveReasons[randomIndex]}"`;
+                textEl.style.opacity = '1';
+            }, 200);
+        }
+
+        /* =========================================================
+           4. INTERACTIVE DIGITAL LOVE NOTES (GOOGLE SHEETS INTEGRATION)
+           ========================================================= */
+        // Silakan ganti string di bawah ini dengan Web App URL dari Deployment Google Apps Script Anda:
+        const APPS_SCRIPT_URL = "ISIKAN_URL_WEB_APP_GOOGLE_APPS_SCRIPT_DI_SINI";
+
+        let notesData = [];
+
+        // Helper untuk Notifikasi Toast Custom (Tanpa alert/confirm)
+        function showToast(message, type = 'info') {
+            let toast = document.getElementById('customToast');
+            if (!toast) {
+                toast = document.createElement('div');
+                toast.id = 'customToast';
+                document.body.appendChild(toast);
+            }
+            
+            if (type === 'error') {
+                toast.className = 'fixed bottom-6 right-6 z-50 p-4 rounded-2xl shadow-xl border border-red-200 bg-red-50 text-red-800 text-xs font-bold transition-all duration-300 flex items-center gap-2';
+                toast.innerHTML = `<i class="fa-solid fa-circle-exclamation text-red-500 text-base"></i> <span>${message}</span>`;
+            } else {
+                toast.className = 'fixed bottom-6 right-6 z-50 p-4 rounded-2xl shadow-xl border border-rose-200 bg-white text-rose-800 text-xs font-bold transition-all duration-300 flex items-center gap-2';
+                toast.innerHTML = `<i class="fa-solid fa-heart text-rose-500 text-base"></i> <span>${message}</span>`;
+            }
+
+            setTimeout(() => toast.classList.remove('opacity-0', 'translate-y-10'), 10);
+            setTimeout(() => toast.classList.add('opacity-0', 'translate-y-10'), 3500);
+        }
+
+        async function loadNotesFromSheet() {
+            const container = document.getElementById('notesContainer');
+            
+            if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === "ISIKAN_URL_WEB_APP_GOOGLE_APPS_SCRIPT_DI_SINI") {
+                container.innerHTML = `
+                    <div class="col-span-full bg-amber-50 border border-amber-200 text-amber-900 p-6 rounded-2xl text-center space-y-2">
+                        <i class="fa-solid fa-triangle-exclamation text-2xl text-amber-500"></i>
+                        <h4 class="font-bold text-sm">URL Google Apps Script Belum Dimasukkan</h4>
+                        <p class="text-xs text-amber-800">Silakan buka file <code class="bg-amber-100 px-1.5 py-0.5 rounded font-mono">index.html</code> dan isi variabel <code class="bg-amber-100 px-1.5 py-0.5 rounded font-mono">APPS_SCRIPT_URL</code> dengan Web App URL dari Google Sheets Anda.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = `
+                <div class="col-span-full p-8 text-center text-rose-600 space-y-2">
+                    <i class="fa-solid fa-spinner fa-spin text-3xl"></i>
+                    <p class="text-xs font-semibold">Mengambil Pesan Cinta dari Google Sheets...</p>
+                </div>
+            `;
+
+            try {
+                const response = await fetch(APPS_SCRIPT_URL);
+                const result = await response.json();
+                if (result.status === 'success') {
+                    notesData = result.data || [];
+                    renderNotes();
+                } else {
+                    throw new Error(result.message || 'Gagal memuat data');
+                }
+            } catch (error) {
+                console.error("Error loading notes:", error);
+                container.innerHTML = `
+                    <div class="col-span-full bg-rose-50 border border-rose-200 text-rose-900 p-6 rounded-2xl text-center space-y-3">
+                        <i class="fa-solid fa-circle-xmark text-2xl text-rose-500"></i>
+                        <h4 class="font-bold text-sm">Gagal Mengambil Pesan</h4>
+                        <p class="text-xs text-rose-700">Pastikan URL Apps Script benar dan akses deployment diatur ke "Siapa saja" (Anyone).</p>
+                        <button onclick="loadNotesFromSheet()" class="px-4 py-1.5 rounded-full bg-rose-600 text-white text-xs font-bold hover:bg-rose-700">Coba Lagi</button>
+                    </div>
+                `;
+            }
+        }
+
+        function renderNotes() {
+            const container = document.getElementById('notesContainer');
+            container.innerHTML = '';
+
+            if (notesData.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full bg-white/80 border border-rose-100 p-8 rounded-2xl text-center text-rose-500 space-y-2">
+                        <i class="fa-solid fa-heart-circle-plus text-3xl text-rose-300"></i>
+                        <p class="text-xs font-semibold">Belum ada pesan tersimpan di Google Sheet. Jadilah yang pertama menempelkan pesan manis!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            notesData.forEach(note => {
+                const noteEl = document.createElement('div');
+                noteEl.className = `sticky-note p-5 rounded-2xl border shadow-sm flex flex-col justify-between ${note.color} relative group`;
+                noteEl.innerHTML = `
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between">
+                            <span class="font-bold text-xs flex items-center gap-1">${escapeHtml(note.author)}</span>
+                            <span class="text-[10px] opacity-70 font-mono">${escapeHtml(note.date)}</span>
+                        </div>
+                        <p class="text-xs leading-relaxed font-medium">${escapeHtml(note.text)}</p>
+                    </div>
+                    <div class="mt-4 pt-2 border-t border-black/10 flex items-center justify-between text-[11px]">
+                        <span class="italic text-[10px] opacity-80 flex items-center gap-1"><i class="fa-solid fa-table"></i> Google Sheets</span>
+                        <button onclick="deleteNote('${note.id}')" class="text-red-500 hover:text-red-700 opacity-0 group-hover:opacity-100 transition-opacity" title="Hapus pesan">
+                            <i class="fa-solid fa-trash-can text-xs"></i>
+                        </button>
+                    </div>
+                `;
+                container.appendChild(noteEl);
+            });
+        }
+
+        function escapeHtml(text) {
+            if (!text) return '';
+            return String(text)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        async function addLoveNote(e) {
+            e.preventDefault();
+            
+            if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === "ISIKAN_URL_WEB_APP_GOOGLE_APPS_SCRIPT_DI_SINI") {
+                showToast("Harap isi variabel APPS_SCRIPT_URL pada file index.html terlebih dahulu!", "error");
+                return;
+            }
+
+            const author = document.getElementById('noteAuthor').value;
+            const text = document.getElementById('noteText').value;
+            const colorRadios = document.getElementsByName('noteColor');
+            let selectedColor = "bg-pink-100 border-pink-300 text-pink-900";
+
+            for (let radio of colorRadios) {
+                if (radio.checked) {
+                    selectedColor = radio.value;
+                    break;
+                }
+            }
+
+            const now = new Date();
+            const dateStr = `${now.getDate()} ${now.toLocaleString('id-ID', { month: 'short' })}`;
+
+            const newNote = {
+                id: Date.now().toString(),
+                author: author,
+                text: text,
+                color: selectedColor,
+                date: dateStr
+            };
+
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            const originalBtnHtml = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> <span>Menyimpan ke Sheet...</span>`;
+
+            try {
+                const response = await fetch(APPS_SCRIPT_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify({ action: 'add', note: newNote })
+                });
+                const result = await response.json();
+                if (result.status === 'success') {
+                    document.getElementById('noteText').value = '';
+                    showToast("Pesan cinta berhasil tersimpan di Google Sheets! 💕");
+                    await loadNotesFromSheet();
+                } else {
+                    showToast("Gagal menyimpan pesan ke Google Sheets", "error");
+                }
+            } catch (err) {
+                console.error("Error adding note:", err);
+                showToast("Terjadi kesalahan koneksi ke Google Sheets", "error");
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnHtml;
+            }
+        }
+
+        async function deleteNote(id) {
+            if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === "ISIKAN_URL_WEB_APP_GOOGLE_APPS_SCRIPT_DI_SINI") return;
+
+            showToast("Menghapus pesan dari Google Sheets...");
+
+            try {
+                const response = await fetch(APPS_SCRIPT_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify({ action: 'delete', id: id })
+                });
+                const result = await response.json();
+                if (result.status === 'success') {
+                    showToast("Pesan berhasil terhapus dari Google Sheets.");
+                    await loadNotesFromSheet();
+                } else {
+                    showToast("Gagal menghapus pesan", "error");
+                }
+            } catch (err) {
+                console.error("Error deleting note:", err);
+                showToast("Terjadi kesalahan koneksi saat menghapus", "error");
+            }
+        }
+
+        // Load notes dari Google Sheets saat halaman dimuat
+        loadNotesFromSheet();
+
+        /* =========================================================
+           5. SURPRISE MODAL CONTROLS
+           ========================================================= */
+        function triggerSurpriseModal() {
+            document.getElementById('surpriseModal').classList.remove('hidden');
+        }
+
+        function closeSurpriseModal() {
+            document.getElementById('surpriseModal').classList.add('hidden');
+        }
+
+        /* =========================================================
+           6. MOBILE MENU TOGGLE
+           ========================================================= */
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        /* =========================================================
+           7. SOFT AMBIENT MUSIC GENERATOR (WEB AUDIO API)
+           ========================================================= */
+        let audioCtx = null;
+        let isPlayingAudio = false;
+        let ambientInterval = null;
+
+        document.getElementById('ambientSoundBtn').addEventListener('click', function() {
+            if (!isPlayingAudio) {
+                startRomanticAmbient();
+                this.classList.remove('bg-rose-100', 'text-rose-700');
+                this.classList.add('bg-rose-600', 'text-white');
+                this.querySelector('span').innerText = 'Matikan Musik';
+            } else {
+                stopRomanticAmbient();
+                this.classList.remove('bg-rose-600', 'text-white');
+                this.classList.add('bg-rose-100', 'text-rose-700');
+                this.querySelector('span').innerText = 'Lagu Cinta';
+            }
+        });
+
+        function playSoftNote(freq, duration) {
+            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+
+            gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.08, audioCtx.currentTime + 0.1);
+            gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            osc.start();
+            osc.stop(audioCtx.currentTime + duration);
+        }
+
+        function startRomanticAmbient() {
+            isPlayingAudio = true;
+            const notes = [261.63, 329.63, 392.00, 523.25, 440.00, 349.23];
+            let idx = 0;
+
+            ambientInterval = setInterval(() => {
+                if (!isPlayingAudio) return;
+                playSoftNote(notes[idx % notes.length], 2.5);
+                idx++;
+            }, 1200);
+        }
+
+        function stopRomanticAmbient() {
+            isPlayingAudio = false;
+            if (ambientInterval) clearInterval(ambientInterval);
+        }
+
+        /* =========================================================
+           8. CANVAS FLOATING ROSE PETALS & HEARTS
+           ========================================================= */
+        const canvas = document.getElementById('romanceCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        });
+
+        const particles = [];
+        const particleCount = 35;
+
+        class RomanceParticle {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * -height;
+                this.size = Math.random() * 12 + 8;
+                this.speedY = Math.random() * 1.2 + 0.6;
+                this.speedX = Math.sin(Math.random() * Math.PI) * 0.8;
+                this.rotation = Math.random() * 360;
+                this.rotSpeed = (Math.random() - 0.5) * 1.5;
+                this.opacity = Math.random() * 0.5 + 0.3;
+                this.type = Math.random() > 0.4 ? 'petal' : 'heart';
+            }
+
+            update() {
+                this.y += this.speedY;
+                this.x += Math.sin(this.y * 0.01) * 0.5 + this.speedX;
+                this.rotation += this.rotSpeed;
+
+                if (this.y > height + 20) {
+                    this.reset();
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate((this.rotation * Math.PI) / 180);
+                ctx.globalAlpha = this.opacity;
+
+                if (this.type === 'petal') {
+                    ctx.fillStyle = '#f43f5e';
+                    ctx.beginPath();
+                    ctx.moveTo(0, 0);
+                    ctx.bezierCurveTo(-this.size / 2, -this.size / 2, -this.size, this.size / 3, 0, this.size);
+                    ctx.bezierCurveTo(this.size, this.size / 3, this.size / 2, -this.size / 2, 0, 0);
+                    ctx.fill();
+                } else {
+                    ctx.fillStyle = '#e11d48';
+                    ctx.beginPath();
+                    const topCurveHeight = this.size * 0.3;
+                    ctx.moveTo(0, topCurveHeight);
+                    ctx.bezierCurveTo(0, 0, -this.size / 2, 0, -this.size / 2, topCurveHeight);
+                    ctx.bezierCurveTo(-this.size / 2, (this.size + topCurveHeight) / 2, 0, this.size, 0, this.size);
+                    ctx.bezierCurveTo(0, this.size, this.size / 2, (this.size + topCurveHeight) / 2, this.size / 2, topCurveHeight);
+                    ctx.bezierCurveTo(this.size / 2, 0, 0, 0, 0, topCurveHeight);
+                    ctx.fill();
+                }
+
+                ctx.restore();
+            }
+        }
+
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new RomanceParticle());
+        }
+
+        function animateRomanceCanvas() {
+            ctx.clearRect(0, 0, width, height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateRomanceCanvas);
+        }
+
+        document.getElementById('petalShowerBtn').addEventListener('click', () => {
+            for (let i = 0; i < 20; i++) {
+                const p = new RomanceParticle();
+                p.y = Math.random() * (height / 2);
+                particles.push(p);
+            }
+            setTimeout(() => {
+                if (particles.length > particleCount) {
+                    particles.splice(particleCount);
+                }
+            }, 5000);
+        });
+
+        window.onload = function() {
+            animateRomanceCanvas();
+        };
+    </script>
+</body>
+</html>
